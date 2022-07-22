@@ -1,3 +1,4 @@
+import { Category } from '../../categories/interfaces/category.interface';
 import { Document } from 'mongoose';
 
 export interface Player extends Document {
@@ -7,4 +8,5 @@ export interface Player extends Document {
   ranking: string;
   positionRanking: number;
   urlImagePlayer: string;
+  category: Category;
 }

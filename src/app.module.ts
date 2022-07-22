@@ -2,18 +2,21 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CategorySchema } from './interfaces/categories/category.schema';
-import { PlayerSchema } from './interfaces/players/player.schema';
+import { CategorySchema } from './categories/interfaces/category.schema';
+import { CategoriesModule } from './categories/categories.module';
+import { PlayersModule } from './players/players.module';
+import 'dotenv/config';
+import { PlayerSchema } from './players/interfaces/player.schema';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://mateus:123@cluster0.uj8bzof.mongodb.net/sradmbackend?retryWrites=true&w=majority',
-    ),
+    MongooseModule.forRoot(process.env.MONGODB_URL),
     MongooseModule.forFeature([
       { name: 'Player', schema: PlayerSchema },
       { name: 'Category', schema: CategorySchema },
     ]),
+    CategoriesModule,
+    PlayersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

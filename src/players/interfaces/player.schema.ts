@@ -7,6 +7,7 @@ export const PlayerSchema = new mongoose.Schema(
     ranking: String,
     positionRanking: Number,
     urlImagePlayer: String,
+    category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
   },
   {
     timestamps: true,
